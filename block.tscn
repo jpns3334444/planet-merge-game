@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://co3u6374k6ff3"]
+
+[ext_resource type="Script" uid="uid://ykkipdbe3ud4" path="res://block.gd" id="1_xfmq8"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3nn7j"]
+bounce = 0.15
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sow36"]
+resource_local_to_scene = true
+radius = 20.0
+
+[node name="block" type="RigidBody2D" groups=["blocks"]]
+physics_material_override = SubResource("PhysicsMaterial_3nn7j")
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_xfmq8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 0.0678472
+shape = SubResource("CircleShape2D_sow36")

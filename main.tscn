@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=3 uid="uid://dko38cjdhvpc6"]
+
+[ext_resource type="Script" uid="uid://c5b50t6lslswy" path="res://main.gd" id="1_0jowx"]
+[ext_resource type="Script" uid="uid://cn02bpoerlern" path="res://GameoverCountDown.gd" id="2_c80sm"]
+[ext_resource type="Script" uid="uid://3dbwbo447vcf" path="res://score.gd" id="3_sxpmq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qtmmw"]
+size = Vector2(440, 30)
+
+[sub_resource type="LabelSettings" id="LabelSettings_85sex"]
+font_size = 30
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m3q8n"]
+font_size = 40
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_0jowx")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(380, 100, 380, 620, 820, 620, 820, 100, 800, 100, 800, 600, 400, 600, 400, 100)
+
+[node name="BoxBorder1" type="ColorRect" parent="StaticBody2D"]
+offset_left = 380.0
+offset_top = 100.0
+offset_right = 400.0
+offset_bottom = 600.0
+
+[node name="BoxBorder2" type="ColorRect" parent="StaticBody2D"]
+offset_left = 800.0
+offset_top = 100.0
+offset_right = 820.0
+offset_bottom = 600.0
+
+[node name="BoxBorder3" type="ColorRect" parent="StaticBody2D"]
+offset_left = 380.0
+offset_top = 600.0
+offset_right = 820.0
+offset_bottom = 620.0
+
+[node name="GameoverArea" type="Area2D" parent="StaticBody2D"]
+
+[node name="GameoverShape" type="CollisionShape2D" parent="StaticBody2D/GameoverArea"]
+position = Vector2(600, 85)
+shape = SubResource("RectangleShape2D_qtmmw")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CountDown" type="Label" parent="CanvasLayer"]
+offset_left = 300.0
+offset_top = 50.0
+offset_right = 340.0
+offset_bottom = 108.0
+text = "5.00"
+label_settings = SubResource("LabelSettings_85sex")
+script = ExtResource("2_c80sm")
+
+[node name="Score" type="Label" parent="CanvasLayer"]
+offset_left = 72.0
+offset_top = 38.0
+offset_right = 112.0
+offset_bottom = 61.0
+text = "0
+"
+label_settings = SubResource("LabelSettings_m3q8n")
+script = ExtResource("3_sxpmq")
+
+[node name="Next" type="Label" parent="CanvasLayer"]
+offset_left = 902.0
+offset_top = 50.0
+offset_right = 994.0
+offset_bottom = 108.0
+text = "Next"
+label_settings = SubResource("LabelSettings_m3q8n")
+
+[node name="Gameover" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 500.0
+offset_top = 100.0
+offset_right = 700.0
+offset_bottom = 158.0
+text = "Gameover"
+label_settings = SubResource("LabelSettings_m3q8n")
+
+[node name="LeftMarker" type="Marker2D" parent="."]
+position = Vector2(400, 140)
+
+[node name="RightMarker" type="Marker2D" parent="."]
+position = Vector2(800, 140)
+
+[node name="NextBlockMarker" type="Marker2D" parent="."]
+position = Vector2(954, 149)
