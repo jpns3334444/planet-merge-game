@@ -85,8 +85,10 @@ func create_planet(position):
 func launch_planet():
 	current_planet.enable_physics()
 	var mouse_pos = get_global_mouse_position()
-	var direction = (mouse_pos - current_planet.global_position).normalized()
-	current_planet.apply_central_impulse(direction * launch_power)
+	var pull_vector = charge_start_mouse_pos - mouse_pos
+	var direction = pull_vector.normalized()
+	var mass_compensation = sqrt(current_planet.mass) * 2
+	current_planet.apply_central_impulse(direction * launch_power * mass_compensation)
 
 func update_launch_preview():
 	var mouse_pos = get_global_mouse_position()

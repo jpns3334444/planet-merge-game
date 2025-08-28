@@ -17,6 +17,7 @@ var gravity_strength: float:
 func _ready():
 	collision_shape_2d.shape.radius = size * 10
 	gravity_shape.shape.radius = size * 30
+	mass = size * size * 2.0
 	body_entered.connect(handle_collision)
 	gravity_field.body_entered.connect(_on_gravity_body_entered)
 	gravity_field.body_exited.connect(_on_gravity_body_exited)
@@ -31,15 +32,14 @@ func _on_gravity_body_exited(body):
 func _physics_process(delta):
 	for body in bodies_in_gravity_field:
 		if is_instance_valid(body):
-			if body.size < size:
-				var direction = global_position - body.global_position
-				var distance = direction.length()
+			var direction = global_position - body.global_position
+			var distance = direction.length()
+			
+			if distance > 20:
+				var force_magnitude = (gravity_strength * body.mass) / (distance * distance)
+				var force = direction.normalized() * force_magnitude * 5000
 				
-				if distance > 20:
-					var force_magnitude = (gravity_strength * body.mass) / (distance * distance)
-					var force = direction.normalized() * force_magnitude * 5000
-					
-					body.apply_central_force(force)
+				body.apply_central_force(force)
 			
 
 
