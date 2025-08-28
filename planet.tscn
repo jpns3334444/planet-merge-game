@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://co3u6374k6ff3"]
+
+[ext_resource type="Script" uid="uid://ykkipdbe3ud4" path="res://planet.gd" id="1_xfmq8"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3nn7j"]
+bounce = 0.15
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sow36"]
+resource_local_to_scene = true
+radius = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1odxm"]
+radius = 100.0
+
+[node name="planet" type="RigidBody2D" groups=["planets"]]
+physics_material_override = SubResource("PhysicsMaterial_3nn7j")
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_xfmq8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 0.0678472
+shape = SubResource("CircleShape2D_sow36")
+
+[node name="GravityField" type="Area2D" parent="."]
+
+[node name="GravityShape" type="CollisionShape2D" parent="GravityField"]
+shape = SubResource("CircleShape2D_1odxm")

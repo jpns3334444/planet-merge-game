@@ -90,5 +90,9 @@ position = Vector2(400, 140)
 [node name="RightMarker" type="Marker2D" parent="."]
 position = Vector2(800, 140)
 
-[node name="NextBlockMarker" type="Marker2D" parent="."]
+[node name="NextplanetMarker" type="Marker2D" parent="."]
 position = Vector2(954, 149)
+
+[node name="LaunchPreview" type="Line2D" parent="."]
+visible = false
+width = 2.0

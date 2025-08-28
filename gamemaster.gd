@@ -1,6 +1,6 @@
 extends Node
 
-signal block_removed(size: int)
+signal planet_removed(size: int)
 
 signal collided(yPos: int)
 
